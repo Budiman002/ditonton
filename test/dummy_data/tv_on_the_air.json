@@ -1,0 +1,42 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/9BqPPKQoBPnDRpQXNW3zvV1kfNw.jpg",
+      "genre_ids": [
+        10765,
+        18
+      ],
+      "id": 94605,
+      "original_name": "Arcane",
+      "overview": "Amid the stark discord of twin cities Piltover and Zaun, two sisters fight on rival sides of a war between magic technologies and clashing convictions.",
+      "popularity": 1052.36,
+      "poster_path": "/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg",
+      "first_air_date": "2021-11-06",
+      "name": "Arcane",
+      "vote_average": 8.7,
+      "vote_count": 2812
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
+      "genre_ids": [
+        10765,
+        10759,
+        18
+      ],
+      "id": 66732,
+      "original_name": "Stranger Things",
+      "overview": "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.",
+      "popularity": 456.372,
+      "poster_path": "/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
+      "first_air_date": "2016-07-15",
+      "name": "Stranger Things",
+      "vote_average": 8.6,
+      "vote_count": 14284
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 2
+}

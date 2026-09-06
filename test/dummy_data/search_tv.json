@@ -1,0 +1,57 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/aDbLBWLjLhFvKlqcHZLVOEfeIYX.jpg",
+      "genre_ids": [
+        18,
+        10765
+      ],
+      "id": 1399,
+      "original_name": "Game of Thrones",
+      "overview": "Seven noble families fight for control of the mythical land of Westeros.",
+      "popularity": 369.594,
+      "poster_path": "/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+      "first_air_date": "2011-04-17",
+      "name": "Game of Thrones",
+      "vote_average": 8.4,
+      "vote_count": 11504
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 122837,
+      "original_name": "Game of Thrones: The Last Watch",
+      "overview": "A documentary that tells the story of the crew behind the final season.",
+      "popularity": 12.106,
+      "poster_path": null,
+      "first_air_date": "2019-05-26",
+      "name": "Game of Thrones: The Last Watch",
+      "vote_average": 7.6,
+      "vote_count": 62
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg",
+      "genre_ids": [
+        10765,
+        18
+      ],
+      "id": 94997,
+      "original_name": "House of the Dragon",
+      "overview": "The Targaryen dynasty is at the absolute apex of its power, with more than 15 dragons under their yoke.",
+      "popularity": 342.211,
+      "poster_path": "/z2yahl2uefxDCl0nogcRBstwruJ.jpg",
+      "first_air_date": "2022-08-21",
+      "name": "House of the Dragon",
+      "vote_average": 8.4,
+      "vote_count": 2517
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 3
+}

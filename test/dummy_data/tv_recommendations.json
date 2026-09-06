@@ -1,0 +1,42 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg",
+      "genre_ids": [
+        10765,
+        18,
+        10759
+      ],
+      "id": 71912,
+      "original_name": "The Witcher",
+      "overview": "Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.",
+      "popularity": 273.164,
+      "poster_path": "/7vjaCdMw15FEbXyLQTVa04URsPm.jpg",
+      "first_air_date": "2019-12-20",
+      "name": "The Witcher",
+      "vote_average": 8.1,
+      "vote_count": 3421
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/6LWy0jvMpmjoS9fojNgHIKoWL05.jpg",
+      "genre_ids": [
+        10765,
+        18
+      ],
+      "id": 63247,
+      "original_name": "Westworld",
+      "overview": "A dark odyssey about the dawn of artificial consciousness and the evolution of sin, set at the intersection of the near future and the reimagined past.",
+      "popularity": 130.229,
+      "poster_path": "/8MfgyFHf7XEboZJPZXCIDqqiz6e.jpg",
+      "first_air_date": "2016-10-02",
+      "name": "Westworld",
+      "vote_average": 8.0,
+      "vote_count": 3105
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 2
+}

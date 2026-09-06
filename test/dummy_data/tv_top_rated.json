@@ -1,0 +1,42 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/dQjNxRUfHwmLcHdIiUAcH3Ma3Qh.jpg",
+      "genre_ids": [
+        10759,
+        16,
+        10765
+      ],
+      "id": 246,
+      "original_name": "Avatar: The Last Airbender",
+      "overview": "In a war-torn world of elemental magic, a young boy reawakens to undertake a dangerous mystic quest to fulfill his destiny as the Avatar.",
+      "popularity": 122.545,
+      "poster_path": "/cHFZA8Tlv03nKTGXhLOYOLtqoSm.jpg",
+      "first_air_date": "2005-02-21",
+      "name": "Avatar: The Last Airbender",
+      "vote_average": 8.7,
+      "vote_count": 3288
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/mQZJoIhTEkNhCYAqcHrQqhENLdu.jpg",
+      "genre_ids": [
+        18,
+        80
+      ],
+      "id": 60059,
+      "original_name": "Better Call Saul",
+      "overview": "Six years before Saul Goodman meets Walter White. We meet him when the man who will become Saul Goodman is known as Jimmy McGill.",
+      "popularity": 174.919,
+      "poster_path": "/fC2HDm5t0kHl7mTm7jxMR31b7by.jpg",
+      "first_air_date": "2015-02-08",
+      "name": "Better Call Saul",
+      "vote_average": 8.6,
+      "vote_count": 3155
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 2
+}
