@@ -81,5 +81,18 @@ void main() {
         expect(result, expectedJsonMap);
       });
     });
+
+    group('props', () {
+      test('should be equal when the tv list is the same', () async {
+        // act
+        final first = TvResponse(tvList: [tTvModel]);
+        final second = TvResponse(tvList: [tTvModel]);
+        // assert
+        expect(first, second);
+        expect(first.props, [
+          [tTvModel]
+        ]);
+      });
+    });
   });
 }
