@@ -2,6 +2,9 @@ import 'package:ditonton/data/models/movie_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/season.dart';
+import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/domain/entities/tv_detail.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -57,3 +60,46 @@ final testMovieMap = {
   'posterPath': 'posterPath',
   'title': 'title',
 };
+
+final testTv = Tv(
+  adult: false,
+  backdropPath: '/aDbLBWLjLhFvKlqcHZLVOEfeIYX.jpg',
+  genreIds: [18, 10765],
+  id: 1399,
+  originalName: 'Game of Thrones',
+  overview:
+      'Seven noble families fight for control of the mythical land of Westeros.',
+  popularity: 369.594,
+  posterPath: '/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg',
+  firstAirDate: '2011-04-17',
+  name: 'Game of Thrones',
+  voteAverage: 8.3,
+  voteCount: 11504,
+);
+
+final testTvDetail = TvDetail(
+  adult: false,
+  backdropPath: 'backdropPath',
+  genres: [Genre(id: 1, name: 'Action')],
+  id: 1,
+  originalName: 'originalName',
+  overview: 'overview',
+  posterPath: 'posterPath',
+  firstAirDate: 'firstAirDate',
+  name: 'name',
+  numberOfSeasons: 1,
+  numberOfEpisodes: 10,
+  seasons: [
+    Season(
+      id: 1,
+      name: 'Season 1',
+      overview: 'overview',
+      posterPath: 'posterPath',
+      seasonNumber: 1,
+      episodeCount: 10,
+      airDate: 'airDate',
+    ),
+  ],
+  voteAverage: 1,
+  voteCount: 1,
+);
