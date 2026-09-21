@@ -27,14 +27,13 @@ import 'package:ditonton/presentation/bloc/movie/top_rated_movies_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/watchlist_movies_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/popular_tvs_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/top_rated_tvs_bloc.dart';
-import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
+import 'package:ditonton/presentation/bloc/tv/tv_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/on_the_air_tvs_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/search_tvs_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/watchlist_tvs_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
 Future<void> main() async {
@@ -55,7 +54,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (_) => di.locator<NowPlayingMoviesBloc>(),
@@ -90,8 +89,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<WatchlistTvsBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvDetailNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TvDetailBloc>(),
         ),
       ],
       child: MaterialApp(
