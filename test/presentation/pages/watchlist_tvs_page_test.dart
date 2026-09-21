@@ -1,70 +1,104 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/tv.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:ditonton/common/utils.dart';
+import 'package:ditonton/presentation/bloc/tv/watchlist_tvs_bloc.dart';
 import 'package:ditonton/presentation/pages/watchlist_tvs_page.dart';
-import 'package:ditonton/presentation/provider/watchlist_tv_notifier.dart';
 import 'package:ditonton/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import 'watchlist_tvs_page_test.mocks.dart';
 
-@GenerateMocks([WatchlistTvNotifier])
+class MockWatchlistTvsBloc
+    extends MockBloc<WatchlistTvsEvent, WatchlistTvsState>
+    implements WatchlistTvsBloc {}
+
+class FakeWatchlistTvsEvent extends Fake implements WatchlistTvsEvent {}
+
+class FakeWatchlistTvsState extends Fake implements WatchlistTvsState {}
+
 void main() {
-  late MockWatchlistTvNotifier mockNotifier;
+  late MockWatchlistTvsBloc mockBloc;
 
-  setUp(() {
-    mockNotifier = MockWatchlistTvNotifier();
+  setUpAll(() {
+    registerFallbackValue(FakeWatchlistTvsEvent());
+    registerFallbackValue(FakeWatchlistTvsState());
   });
 
-  Widget _makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<WatchlistTvNotifier>.value(
-      value: mockNotifier,
+  setUp(() {
+    mockBloc = MockWatchlistTvsBloc();
+  });
+
+  Widget makeTestableWidget(Widget body) {
+    return BlocProvider<WatchlistTvsBloc>.value(
+      value: mockBloc,
       child: MaterialApp(
         home: body,
+        navigatorObservers: [routeObserver],
       ),
     );
   }
 
   testWidgets('Page should display progress bar when loading',
       (WidgetTester tester) async {
-    when(mockNotifier.watchlistState).thenReturn(RequestState.Loading);
+    when(() => mockBloc.state).thenReturn(WatchlistTvsLoading());
 
-    final progressFinder = find.byType(CircularProgressIndicator);
-    final centerFinder = find.byType(Center);
+    await tester.pumpWidget(makeTestableWidget(WatchlistTvsPage()));
 
-    await tester.pumpWidget(_makeTestableWidget(WatchlistTvsPage()));
-
-    expect(centerFinder, findsOneWidget);
-    expect(progressFinder, findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
   testWidgets('Page should display ListView when data is loaded',
       (WidgetTester tester) async {
-    when(mockNotifier.watchlistState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.watchlistTvs).thenReturn(<Tv>[testTv]);
+    when(() => mockBloc.state).thenReturn(WatchlistTvsHasData(testTvList));
 
-    final listViewFinder = find.byType(ListView);
+    await tester.pumpWidget(makeTestableWidget(WatchlistTvsPage()));
 
-    await tester.pumpWidget(_makeTestableWidget(WatchlistTvsPage()));
-
-    expect(listViewFinder, findsOneWidget);
+    expect(find.byType(ListView), findsOneWidget);
     expect(find.byType(TvCard), findsOneWidget);
     expect(find.text(testTv.name!), findsOneWidget);
   });
 
   testWidgets('Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(mockNotifier.watchlistState).thenReturn(RequestState.Error);
-    when(mockNotifier.message).thenReturn('Error message');
+    when(() => mockBloc.state)
+        .thenReturn(WatchlistTvsError("Can't get data"));
 
-    final textFinder = find.byKey(Key('error_message'));
+    await tester.pumpWidget(makeTestableWidget(WatchlistTvsPage()));
 
-    await tester.pumpWidget(_makeTestableWidget(WatchlistTvsPage()));
+    expect(find.byKey(Key('error_message')), findsOneWidget);
+    expect(find.text("Can't get data"), findsOneWidget);
+  });
 
-    expect(textFinder, findsOneWidget);
+  testWidgets('Page should dispatch FetchWatchlistTvs on init',
+      (WidgetTester tester) async {
+    when(() => mockBloc.state).thenReturn(WatchlistTvsEmpty());
+
+    await tester.pumpWidget(makeTestableWidget(WatchlistTvsPage()));
+
+    verify(() => mockBloc.add(FetchWatchlistTvs())).called(1);
+  });
+
+  testWidgets(
+      'Page should re-dispatch FetchWatchlistTvs on didPopNext '
+      '(back from another route)', (WidgetTester tester) async {
+    when(() => mockBloc.state).thenReturn(WatchlistTvsEmpty());
+
+    await tester.pumpWidget(makeTestableWidget(WatchlistTvsPage()));
+    await tester.pumpAndSettle();
+
+    final context = tester.element(find.byType(WatchlistTvsPage));
+
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => Scaffold(body: Text('detail'))),
+    );
+    await tester.pumpAndSettle();
+
+    Navigator.of(context).pop();
+    await tester.pumpAndSettle();
+
+    // once from initState, once from didPopNext
+    verify(() => mockBloc.add(FetchWatchlistTvs())).called(2);
   });
 }

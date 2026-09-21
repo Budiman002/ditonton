@@ -78,6 +78,8 @@ final testTv = Tv(
   voteCount: 11504,
 );
 
+final testTvList = [testTv];
+
 final testTvDetail = TvDetail(
   adult: false,
   backdropPath: 'backdropPath',

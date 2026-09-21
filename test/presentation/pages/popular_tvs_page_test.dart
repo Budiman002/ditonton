@@ -1,70 +1,79 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/tv.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:ditonton/presentation/bloc/tv/popular_tvs_bloc.dart';
 import 'package:ditonton/presentation/pages/popular_tvs_page.dart';
-import 'package:ditonton/presentation/provider/popular_tvs_notifier.dart';
 import 'package:ditonton/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import 'popular_tvs_page_test.mocks.dart';
 
-@GenerateMocks([PopularTvsNotifier])
+class MockPopularTvsBloc extends MockBloc<PopularTvsEvent, PopularTvsState>
+    implements PopularTvsBloc {}
+
+class FakePopularTvsEvent extends Fake implements PopularTvsEvent {}
+
+class FakePopularTvsState extends Fake implements PopularTvsState {}
+
 void main() {
-  late MockPopularTvsNotifier mockNotifier;
+  late MockPopularTvsBloc mockBloc;
 
-  setUp(() {
-    mockNotifier = MockPopularTvsNotifier();
+  setUpAll(() {
+    registerFallbackValue(FakePopularTvsEvent());
+    registerFallbackValue(FakePopularTvsState());
   });
 
-  Widget _makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<PopularTvsNotifier>.value(
-      value: mockNotifier,
+  setUp(() {
+    mockBloc = MockPopularTvsBloc();
+  });
+
+  Widget makeTestableWidget(Widget body) {
+    return BlocProvider<PopularTvsBloc>.value(
+      value: mockBloc,
       child: MaterialApp(
         home: body,
       ),
     );
   }
 
-  testWidgets('Page should display center progress bar when loading',
+  testWidgets('Page should display progress bar when loading',
       (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loading);
+    when(() => mockBloc.state).thenReturn(PopularTvsLoading());
 
-    final progressBarFinder = find.byType(CircularProgressIndicator);
-    final centerFinder = find.byType(Center);
+    await tester.pumpWidget(makeTestableWidget(PopularTvsPage()));
 
-    await tester.pumpWidget(_makeTestableWidget(PopularTvsPage()));
-
-    expect(centerFinder, findsOneWidget);
-    expect(progressBarFinder, findsOneWidget);
+    expect(find.byType(Center), findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
 
   testWidgets('Page should display ListView when data is loaded',
       (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvs).thenReturn(<Tv>[testTv]);
+    when(() => mockBloc.state).thenReturn(PopularTvsHasData(testTvList));
 
-    final listViewFinder = find.byType(ListView);
+    await tester.pumpWidget(makeTestableWidget(PopularTvsPage()));
 
-    await tester.pumpWidget(_makeTestableWidget(PopularTvsPage()));
-
-    expect(listViewFinder, findsOneWidget);
+    expect(find.byType(ListView), findsOneWidget);
     expect(find.byType(TvCard), findsOneWidget);
     expect(find.text(testTv.name!), findsOneWidget);
   });
 
   testWidgets('Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Error);
-    when(mockNotifier.message).thenReturn('Error message');
+    when(() => mockBloc.state).thenReturn(PopularTvsError('Error message'));
 
-    final textFinder = find.byKey(Key('error_message'));
+    await tester.pumpWidget(makeTestableWidget(PopularTvsPage()));
 
-    await tester.pumpWidget(_makeTestableWidget(PopularTvsPage()));
+    expect(find.byKey(Key('error_message')), findsOneWidget);
+    expect(find.text('Error message'), findsOneWidget);
+  });
 
-    expect(textFinder, findsOneWidget);
+  testWidgets('Page should dispatch FetchPopularTvs on init',
+      (WidgetTester tester) async {
+    when(() => mockBloc.state).thenReturn(PopularTvsEmpty());
+
+    await tester.pumpWidget(makeTestableWidget(PopularTvsPage()));
+
+    verify(() => mockBloc.add(FetchPopularTvs())).called(1);
   });
 }
