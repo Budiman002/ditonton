@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "230776891143",
+    "project_id": "ditonton-c6d95",
+    "storage_bucket": "ditonton-c6d95.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230776891143:android:d03467ee491052ebfa47a2",
+        "android_client_info": {
+          "package_name": "com.dicoding.ditonton"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNI3B0WhdmYuPkWJdZxtU44Re5Ir4hnXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
