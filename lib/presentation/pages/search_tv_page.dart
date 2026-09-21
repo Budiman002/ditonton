@@ -7,8 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SearchTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/search-tv';
 
+  const SearchTvPage({super.key});
+
   @override
-  _SearchTvPageState createState() => _SearchTvPageState();
+  State<SearchTvPage> createState() => _SearchTvPageState();
 }
 
 class _SearchTvPageState extends State<SearchTvPage> {

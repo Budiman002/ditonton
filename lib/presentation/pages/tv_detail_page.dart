@@ -13,10 +13,10 @@ class TvDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/detail-tv';
 
   final int id;
-  TvDetailPage({required this.id});
+  const TvDetailPage({super.key, required this.id});
 
   @override
-  _TvDetailPageState createState() => _TvDetailPageState();
+  State<TvDetailPage> createState() => _TvDetailPageState();
 }
 
 class _TvDetailPageState extends State<TvDetailPage> {
@@ -80,7 +80,7 @@ class DetailContent extends StatelessWidget {
   final List<Tv> recommendations;
   final bool isAddedWatchlist;
 
-  DetailContent(this.tv, this.recommendations, this.isAddedWatchlist);
+  const DetailContent(this.tv, this.recommendations, this.isAddedWatchlist, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +181,7 @@ class DetailContent extends StatelessWidget {
                               'Seasons',
                               style: kHeading6,
                             ),
-                            Container(
+                            SizedBox(
                               height: 180,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -248,7 +248,7 @@ class DetailContent extends StatelessWidget {
                                   return Text(state.message);
                                 } else if (state.recommendationState ==
                                     RequestState.Loaded) {
-                                  return Container(
+                                  return SizedBox(
                                     height: 150,
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
@@ -331,7 +331,7 @@ class DetailContent extends StatelessWidget {
   String _showGenres(List<Genre> genres) {
     String result = '';
     for (var genre in genres) {
-      result += genre.name + ', ';
+      result += '${genre.name}, ';
     }
 
     if (result.isEmpty) {

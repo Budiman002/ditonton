@@ -15,8 +15,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomeTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/home-tv';
 
+  const HomeTvPage({super.key});
+
   @override
-  _HomeTvPageState createState() => _HomeTvPageState();
+  State<HomeTvPage> createState() => _HomeTvPageState();
 }
 
 class _HomeTvPageState extends State<HomeTvPage> {
@@ -139,11 +141,11 @@ class _HomeTvPageState extends State<HomeTvPage> {
 class TvList extends StatelessWidget {
   final List<Tv> tvs;
 
-  TvList(this.tvs);
+  const TvList(this.tvs, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

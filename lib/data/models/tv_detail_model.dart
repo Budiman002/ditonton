@@ -4,7 +4,7 @@ import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class TvDetailModel extends Equatable {
-  TvDetailModel({
+  const TvDetailModel({
     required this.adult,
     required this.backdropPath,
     required this.genres,
@@ -74,20 +74,20 @@ class TvDetailModel extends Equatable {
 
   TvDetail toEntity() {
     return TvDetail(
-      adult: this.adult,
-      backdropPath: this.backdropPath,
-      genres: this.genres.map((genre) => genre.toEntity()).toList(),
-      id: this.id,
-      originalName: this.originalName,
-      overview: this.overview,
-      posterPath: this.posterPath,
-      firstAirDate: this.firstAirDate,
-      name: this.name,
-      numberOfSeasons: this.numberOfSeasons,
-      numberOfEpisodes: this.numberOfEpisodes,
-      seasons: this.seasons.map((season) => season.toEntity()).toList(),
-      voteAverage: this.voteAverage,
-      voteCount: this.voteCount,
+      adult: adult,
+      backdropPath: backdropPath,
+      genres: genres.map((genre) => genre.toEntity()).toList(),
+      id: id,
+      originalName: originalName,
+      overview: overview,
+      posterPath: posterPath,
+      firstAirDate: firstAirDate,
+      name: name,
+      numberOfSeasons: numberOfSeasons,
+      numberOfEpisodes: numberOfEpisodes,
+      seasons: seasons.map((season) => season.toEntity()).toList(),
+      voteAverage: voteAverage,
+      voteCount: voteCount,
     );
   }
 

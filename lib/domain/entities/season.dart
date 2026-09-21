@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Season extends Equatable {
-  Season({
+  const Season({
     required this.id,
     required this.name,
     required this.overview,

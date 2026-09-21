@@ -7,8 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class WatchlistMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';
 
+  const WatchlistMoviesPage({super.key});
+
   @override
-  _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
+  State<WatchlistMoviesPage> createState() => _WatchlistMoviesPageState();
 }
 
 class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>

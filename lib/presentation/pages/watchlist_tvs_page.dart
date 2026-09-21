@@ -7,8 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class WatchlistTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-tv';
 
+  const WatchlistTvsPage({super.key});
+
   @override
-  _WatchlistTvsPageState createState() => _WatchlistTvsPageState();
+  State<WatchlistTvsPage> createState() => _WatchlistTvsPageState();
 }
 
 class _WatchlistTvsPageState extends State<WatchlistTvsPage> with RouteAware {

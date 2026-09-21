@@ -6,8 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PopularTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-tv';
 
+  const PopularTvsPage({super.key});
+
   @override
-  _PopularTvsPageState createState() => _PopularTvsPageState();
+  State<PopularTvsPage> createState() => _PopularTvsPageState();
 }
 
 class _PopularTvsPageState extends State<PopularTvsPage> {

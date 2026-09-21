@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SearchPage extends StatelessWidget {
   static const ROUTE_NAME = '/search';
 
+  const SearchPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
